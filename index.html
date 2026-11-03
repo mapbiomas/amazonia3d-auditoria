@@ -1820,7 +1820,7 @@
     </script>
 
     <p class="doctype">Relatório técnico &middot; 10ª emissão &middot; <!--ATUALIZADO:inicio-->
-atualizado em <time datetime="2026-10-30">30/10/2026</time>
+atualizado em <time datetime="2026-11-03">03/11/2026</time>
 <!--ATUALIZADO:fim--></p>
     <h1>Auditoria das Entregas Amazônia 3D</h1>
     <p class="standfirst">
@@ -1953,13 +1953,21 @@ atualizado em <time datetime="2026-10-30">30/10/2026</time>
     <p>Os 24.992.610 pontos estão na classe 0 do ASPRS (<i>created, never classified</i>). Tamanho e geometria normais: o cabeçalho LAS não acusa o defeito.</p>
     <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Reprocessar a classificação deste tile.</span></div>
   </details></article>
-  <article id="a-e09-solo-raso" class="finding crit">
+  <article id="a-e12-crs-graus" class="finding crit">
     <details><summary>
-    <div class="fhead"><span class="rank">05</span><h3>ENTREGA_09: 1,57 pts/m² em solo</h3><span class="st aberto">Em aberto</span><span class="pill">851 tiles</span><time class="quando" datetime="2026-10-09">09/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="fhead"><span class="rank">05</span><h3>Quatro arquivos da ENTREGA_12 regravados em graus</h3><span class="st aberto">Reenvio necessário</span><span class="pill">ENTREGA_12 &middot; 4 arquivos</span><time class="quando" datetime="2026-10-30">30/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
   </summary>
-    <p class="origem">Medido na <a href="#quadricula">seção 09</a>.</p>
-    <p>Mediana da entrega, contra 3,5 pts/m² contratados e 3,84 no resto do acervo. Ocupação em 2×2: 75,1%, com 68% dos talhões acima do patamar. Mediana de 5 passadas de voo.</p>
-    <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Pedir ao fornecedor a explicação da densidade de solo da E09.</span></div>
+    <p>Na regravação de 28/10/2026, três MDT e uma nuvem passaram de SIRGAS 2000 / UTM 20S (EPSG:31980), em metros, para WGS 84 geográfico (EPSG:4326), em graus. Os <code>.prj</code> desses três MDT têm 138 bytes (<code>GCS_WGS_1984</code>), contra 503 nos outros 589.</p>
+    <div class="scroller bare"><table class="plain">
+      <thead><tr><th scope="col">Arquivo</th><th scope="col">Antes</th><th scope="col">Agora</th></tr></thead>
+      <tbody>
+        <tr><td><code>MDT_1391120.tif</code></td><td>EPSG:31980, pixel 0,5 m</td><td>EPSG:4326, pixel 4,52e-6°</td></tr>
+        <tr><td><code>MDT_1396147.tif</code></td><td>EPSG:31980, pixel 0,5 m</td><td>EPSG:4326, pixel 4,52e-6°</td></tr>
+        <tr><td><code>MDT_1404129.tif</code></td><td>EPSG:31980, pixel 0,5 m</td><td>EPSG:4326, pixel 4,52e-6°</td></tr>
+        <tr><td><code>NP_1396147.laz</code></td><td>UTM, 38.457.640 pontos</td><td>graus, 38.308.928 pontos</td></tr>
+      </tbody></table></div>
+    <p>Em graus, o MDT não alinha com os vizinhos nem com MDS, MDSn e ortofoto do mesmo tile, e a nuvem quebra todo cálculo métrico. No Earth Engine ficaram as versões anteriores, em UTM. A mesma leva trouxe de volta um <code>Thumbs.db</code> em <code>ENTREGA_12/2_MDT/GEOTIFF/</code>.</p>
+    <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Reenviar os quatro arquivos, com <code>.prj</code> e <code>.tfw</code>, em EPSG:31980 e pixel de 0,5 m no MDT; remover o <code>Thumbs.db</code>.</span></div>
   </details></article>
   <article id="a-solo-nao-responde" class="finding crit">
     <details><summary>
@@ -1973,7 +1981,7 @@ atualizado em <time datetime="2026-10-30">30/10/2026</time>
         <tr><td>Faixa das medianas por passadas</td><td class="sup">40,6 a 71,0</td><td class="sup">3,82 a 3,85</td></tr>
         <tr><td>Intervalo interquartílico relativo</td><td class="sup">0,614</td><td class="sup">0,104</td></tr>
       </tbody></table></div>
-    <p>Quartis da densidade de solo nos talhões cheios: 3,64 e 4,04, mediana 3,84. As medianas por entrega ficam entre 3,83 e 3,93 pts/m², exceto a ENTREGA_09, com 1,57. A especificação contratada não consta desta análise.</p>
+    <p>Quartis da densidade de solo nos talhões cheios: 3,64 e 4,04, mediana 3,84. As medianas por entrega ficam entre 3,83 e 3,93 pts/m²; a ENTREGA_09, que media 1,57, foi reposta em 27/10/2026 e mede 3,80. A especificação contratada não consta desta análise.</p>
     <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Perguntar se a classe de solo passa por desbaste ou normalização para a densidade contratada, e com que critério. A resposta define se a densidade média segue como critério de aceite.</span></div>
   </details></article>
   <article id="a-mdsn-na-pasta-do-mds" class="finding crit">
@@ -1986,18 +1994,19 @@ atualizado em <time datetime="2026-10-30">30/10/2026</time>
   </details></article>
   <article id="a-e02-e12-abaixo" class="finding warn">
     <details><summary>
-    <div class="fhead"><span class="rank">08</span><h3>ENTREGA_02, ENTREGA_12 e ENTREGA_13 abaixo do patamar de ocupação</h3><span class="st aberto">Em aberto</span><span class="pill">2.053 tiles</span><time class="quando" datetime="2026-10-20">20/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="fhead"><span class="rank">08</span><h3>ENTREGA_02, ENTREGA_12 e ENTREGA_13 abaixo do patamar de ocupação; ENTREGA_14 no limite</h3><span class="st aberto">Em aberto</span><span class="pill">2.642 tiles</span><time class="quando" datetime="2026-10-30">30/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
   </summary>
     <p class="origem">Medido na <a href="#quadricula">seção 09</a>.</p>
     <p>Ocupação agregada em 2×2: E02 65,1%, E12 67,3% e E13 66,5%, contra o patamar de 70%. Talhões acima do patamar: 30%, 31% e 30%. Medianas de 3, 4 e 2 passadas de voo. A E13 foi medida em 20/10/2026.</p>
-    <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Apresentar ao fornecedor junto com a tabela da seção 09.</span></div>
+    <p>A ENTREGA_14, medida em 30/10/2026, fica em 70,0%, com 44% dos talhões acima do patamar. Suas passadas de voo ainda não são contadas: o pacote de trajetórias recebido é de 09/10/2026, anterior ao voo.</p>
+    <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Apresentar ao fornecedor junto com a tabela da seção 09 e pedir as trajetórias de voo da ENTREGA_14.</span></div>
   </details></article>
   <article id="a-sem-crs" class="finding warn">
     <details><summary>
-    <div class="fhead"><span class="rank">09</span><h3>1.082 nuvens sem sistema de coordenadas</h3><span class="st aberto">Em aberto</span><span class="pill">E09 798 &middot; E08 271 &middot; E06 13</span><time class="quando" datetime="2026-10-09">09/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="fhead"><span class="rank">09</span><h3>528 nuvens sem sistema de coordenadas</h3><span class="st aberto">Em aberto</span><span class="pill">E08 271 &middot; E09 244 &middot; E06 13</span><time class="quando" datetime="2026-10-30">30/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
   </summary>
     <p class="origem">Medido na <a href="#quadricula">seção 09</a>.</p>
-    <p>Sem VLR de projeção, só o do laszip. A medição presumiu EPSG:31980 (o de todo talhão que declara CRS) e conferiu por coluna da grade: 1.068 confirmados, 14 em colunas sem talhão com CRS declarado, nenhuma contradição.</p>
+    <p>Sem VLR de projeção, só o do laszip. A medição presumiu EPSG:31980 (o de todo talhão que declara CRS) e conferiu por coluna da grade, sem contradição. Eram 1.082 em 09/10/2026; a reposição da ENTREGA_09 em 27/10 trouxe a projeção embutida em 554 nuvens, e restam 244 dela.</p>
     <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Reenviar com a projeção embutida ou confirmar formalmente a zona.</span></div>
   </details></article>
   <article id="a-e04-filtrada" class="finding warn">
@@ -2011,7 +2020,7 @@ atualizado em <time datetime="2026-10-30">30/10/2026</time>
   </details></article>
   <article id="a-substituicoes-sem-aviso" class="finding warn">
     <details><summary>
-    <div class="fhead"><span class="rank">11</span><h3>Arquivos substituídos no lugar, sem aviso</h3><span class="st aberto">Em aberto</span><span class="pill">11.313 objetos &middot; 5 entregas</span><time class="quando" datetime="2026-10-20">20/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="fhead"><span class="rank">11</span><h3>Arquivos substituídos no lugar, sem aviso</h3><span class="st aberto">Em aberto</span><span class="pill">19.381 objetos &middot; 7 entregas</span><time class="quando" datetime="2026-10-30">30/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
   </summary>
     <div class="scroller bare"><table class="plain">
       <thead><tr><th scope="col">Entrega</th><th scope="col">Substituído</th><th scope="col">Objetos</th><th scope="col">Quando</th></tr></thead>
@@ -2022,8 +2031,10 @@ atualizado em <time datetime="2026-10-30">30/10/2026</time>
         <tr><td>ENTREGA_07</td><td>MDT inteiro</td><td class="sup">2.385</td><td>23/09</td></tr>
         <tr><td>ENTREGA_07</td><td>nuvens de pontos e MDT inteiro</td><td class="sup">2.862</td><td>02/10</td></tr>
         <tr><td>ENTREGA_08</td><td>193 nuvens de pontos e MDT inteiro</td><td class="sup">2.503</td><td>09/10</td></tr>
+        <tr><td>ENTREGA_09</td><td>851 nuvens de pontos e MDT inteiro</td><td class="sup">5.106</td><td>27–28/10</td></tr>
+        <tr><td>ENTREGA_12</td><td>1 nuvem e MDT inteiro</td><td class="sup">2.962</td><td>28/10</td></tr>
       </tbody></table></div>
-    <p>Nomes mantidos e contagem de objetos inalterada. A da E06 só foi vista em 19/10/2026, quando o asset do MDT, de 27/07, se mostrou mais antigo que o arquivo; nuvens, MDS e MDSn da E06 têm a mesma data de 21/08, sem registro anterior que diga se mudaram. Na leva de 29/09 da E04, 169 dos 509 arquivos voltaram idênticos aos já enviados.</p>
+    <p>Nomes mantidos e contagem de objetos inalterada. A da E06 só foi vista em 19/10/2026, quando o asset do MDT, de 27/07, se mostrou mais antigo que o arquivo; nuvens, MDS e MDSn da E06 têm a mesma data de 21/08, sem registro anterior que diga se mudaram. Na leva de 29/09 da E04, 169 dos 509 arquivos voltaram idênticos aos já enviados. Os 1.440 MDT trocados da E09 e da E12 já estavam no Earth Engine e foram reingeridos até 31/10/2026, menos os três da E12 que vieram em graus (<a href="#a-e12-crs-graus">achado 05</a>).</p>
     <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Comunicar toda substituição de arquivo publicado, com entrega, produto e faixa de tiles.</span></div>
   </details></article>
   </section>
@@ -2033,6 +2044,19 @@ atualizado em <time datetime="2026-10-30">30/10/2026</time>
     <h2>Resolvido</h2>
     <p class="lede">Apontado antes e ausente do acervo hoje.</p>
 
+  <article id="a-e09-solo-raso" class="finding ok"><details><summary>
+    <div class="fhead"><h3>ENTREGA_09: densidade de solo de volta à faixa do acervo</h3><span class="st fechado">Resolvido</span><span class="pill">851 tiles</span><time class="quando" datetime="2026-10-30">30/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+  </summary>
+    <p class="origem">Medido na <a href="#quadricula">seção 09</a>.</p>
+    <div class="scroller bare"><table class="plain">
+      <thead><tr><th scope="col">Medida</th><th scope="col">20/10/2026</th><th scope="col">30/10/2026</th></tr></thead>
+      <tbody>
+        <tr><td>Densidade de solo (mediana)</td><td class="sup">1,57</td><td class="sup">3,80</td></tr>
+        <tr><td>Ocupação agregada em 2×2</td><td class="sup">75,1%</td><td class="sup">76,7%</td></tr>
+        <tr><td>Talhões acima do patamar</td><td class="sup">68%</td><td class="sup">74%</td></tr>
+      </tbody></table></div>
+    <p>O fornecedor regravou as 851 nuvens e o MDT inteiro em 27/10/2026, sem aviso nem a explicação pedida (ver <a href="#a-substituicoes-sem-aviso">Arquivos substituídos no lugar</a>). A mediana de solo fica agora junto às demais entregas (3,83 a 3,93). As nuvens novas trazem 85.748 pontos fora das classes contadas (55 mil de ruído e 30 mil nunca classificados), contra 383 antes: resíduo, mas novo.</p>
+  </details></article>
   <article id="r-np1411113" class="finding ok"><details><summary>
     <div class="fhead"><h3><code>NP_1411113</code>: densidade da faixa de voo</h3><span class="st fechado">Resolvido</span><span class="pill">ENTREGA_11 &middot; censo de 906 tiles</span><time class="quando" datetime="2026-10-09">09/10/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
   </summary>
@@ -2553,7 +2577,7 @@ atualizado em <time datetime="2026-10-30">30/10/2026</time>
     <p class="lede">
       Ocupação de quadrículas por solo, da leitura de classes de cada nuvem ponto a ponto.
     </p>
-    <p class="achou"><b>O que esta seção achou:</b> <a href="#a-np1434187-sem-classe">uma nuvem nunca classificada</a>; <a href="#a-e09-solo-raso">ENTREGA_09 com 1,57 pts/m² em solo</a>; <a href="#a-solo-nao-responde">a densidade de solo não responde ao voo</a>; <a href="#a-e02-e12-abaixo">ENTREGA_02, ENTREGA_12 e ENTREGA_13 abaixo do patamar</a>; <a href="#a-sem-crs">1.082 nuvens sem sistema de coordenadas</a>. O card de cada um está na <a href="#achados">Parte I</a>.</p>
+    <p class="achou"><b>O que esta seção achou:</b> <a href="#a-np1434187-sem-classe">uma nuvem nunca classificada</a>; <a href="#a-e09-solo-raso">ENTREGA_09 com solo raso, corrigido na reposição de 27/10</a>; <a href="#a-solo-nao-responde">a densidade de solo não responde ao voo</a>; <a href="#a-e02-e12-abaixo">ENTREGA_02, ENTREGA_12 e ENTREGA_13 abaixo do patamar</a>; <a href="#a-sem-crs">1.082 nuvens sem sistema de coordenadas</a>. O card de cada um está na <a href="#achados">Parte I</a>.</p>
 
       <!--QUADRICULA_VIGENCIA:inicio-->
 
