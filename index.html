@@ -1955,9 +1955,9 @@ atualizado em <time datetime="2026-11-26">26/11/2026</time>
   </details></article>
   <article id="a-e12-crs-graus" class="finding crit">
     <details><summary>
-    <div class="fhead"><span class="rank">05</span><h3>Sete arquivos da ENTREGA_12 regravados em graus</h3><span class="st aberto">Reenvio necessário</span><span class="pill">ENTREGA_12 &middot; 7 arquivos</span><time class="quando" datetime="2026-11-18">18/11/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="fhead"><span class="rank">05</span><h3>Oito arquivos regravados em graus: sete da ENTREGA_12, um da ENTREGA_11</h3><span class="st aberto">Reenvio necessário</span><span class="pill">E12 e E11 &middot; 8 arquivos</span><time class="quando" datetime="2026-11-26">26/11/2026</time><svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></div>
   </summary>
-    <p>Na regravação de 28/10/2026, três MDT e uma nuvem passaram de SIRGAS 2000 / UTM 20S (EPSG:31980), em metros, para WGS 84 geográfico (EPSG:4326), em graus. A de 13/11/2026 repetiu o defeito em mais um MDT e duas nuvens. Os <code>.prj</code> dos quatro MDT têm 138 bytes (<code>GCS_WGS_1984</code>), contra 503 nos outros 588.</p>
+    <p>Na regravação de 28/10/2026, três MDT e uma nuvem passaram de SIRGAS 2000 / UTM 20S (EPSG:31980), em metros, para WGS 84 geográfico (EPSG:4326), em graus. A de 13/11/2026 repetiu o defeito em mais um MDT e duas nuvens, e a regravação da ENTREGA_11 em 24/11/2026 o levou a outra entrega: a nuvem <code>NP_1436147.laz</code>, que agora declara EPSG:4326. Os <code>.prj</code> dos quatro MDT têm 138 bytes (<code>GCS_WGS_1984</code>), contra 503 nos outros 588.</p>
     <div class="scroller bare"><table class="plain">
       <thead><tr><th scope="col">Arquivo</th><th scope="col">Antes</th><th scope="col">Agora</th></tr></thead>
       <tbody>
@@ -1968,9 +1968,10 @@ atualizado em <time datetime="2026-11-26">26/11/2026</time>
         <tr><td><code>MDT_1403121.tif</code> (13/11)</td><td>EPSG:31980, pixel 0,5 m</td><td>EPSG:4326, pixel 4,52e-6°</td></tr>
         <tr><td><code>NP_1401130.laz</code> (13/11)</td><td>UTM</td><td>graus (longitude −63)</td></tr>
         <tr><td><code>NP_1403121.laz</code> (13/11)</td><td>UTM</td><td>graus (longitude −64)</td></tr>
+          <tr><td><code>ENTREGA_11/NP_1436147.laz</code> (24/11)</td><td>UTM, 33.018.495 pontos</td><td>EPSG:4326, 30.603.049 pontos</td></tr>
       </tbody></table></div>
-    <p>Em graus, o MDT não alinha com os vizinhos nem com MDS, MDSn e ortofoto do mesmo tile, e a nuvem quebra todo cálculo métrico. No Earth Engine ficaram as versões anteriores, em UTM; desde 18/11/2026 a substituição de asset recusa arquivo em coordenada geográfica. As três nuvens em graus ficam fora da medição da seção 09 até o reenvio; o registro da versão anterior, que descrevia um arquivo que já não existe, foi arquivado. A leva de 28/10 trouxe de volta um <code>Thumbs.db</code> em <code>ENTREGA_12/2_MDT/GEOTIFF/</code>.</p>
-    <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Reenviar os sete arquivos, com <code>.prj</code> e <code>.tfw</code>, em EPSG:31980 e pixel de 0,5 m no MDT; remover o <code>Thumbs.db</code>.</span></div>
+    <p>Em graus, o MDT não alinha com os vizinhos nem com MDS, MDSn e ortofoto do mesmo tile, e a nuvem quebra todo cálculo métrico. No Earth Engine ficaram as versões anteriores, em UTM; desde 18/11/2026 a substituição de asset recusa arquivo em coordenada geográfica. As quatro nuvens em graus ficam fora da medição da seção 09 e do censo de densidade até o reenvio; o registro da versão anterior, que descrevia um arquivo que já não existe, foi arquivado. A leva de 28/10 trouxe de volta um <code>Thumbs.db</code> em <code>ENTREGA_12/2_MDT/GEOTIFF/</code>.</p>
+    <div class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Ação.</b> Reenviar os oito arquivos, com <code>.prj</code> e <code>.tfw</code>, em EPSG:31980 e pixel de 0,5 m no MDT; remover o <code>Thumbs.db</code>.</span></div>
   </details></article>
   <article id="a-solo-nao-responde" class="finding crit">
     <details><summary>
@@ -2675,7 +2676,7 @@ atualizado em <time datetime="2026-11-26">26/11/2026</time>
       <!--QUADRICULA_TABELAS:inicio-->
       <p class="note" style="margin-top:0">
         Medição de <time datetime="2026-11-26">26/11/2026</time>
-        &middot; 11.843 talhões &middot; 16 entregas.
+        &middot; 11.842 talhões &middot; 16 entregas.
       </p>
       <div class="scroller bare">
         <table class="plain">
